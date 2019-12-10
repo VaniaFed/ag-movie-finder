@@ -10,6 +10,10 @@ interface Movie {
   releaseDate: string;
 }
 
+interface GotMovies {
+  data: Movie[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +23,7 @@ export class MovieService {
 
   movies = [];
   fetchMovies = () => {
-    return this.httpClient.get<Movie[]>('http://reactjs-cdp.herokuapp.com/movies')
+    return this.httpClient.get<GotMovies>('http://reactjs-cdp.herokuapp.com/movies')
       .pipe(tap(movies => this.movies = this.validate(movies.data)));
   }
   validate = movies => {

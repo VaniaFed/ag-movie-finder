@@ -1,3 +1,5 @@
 <div class="container">
+  <toggle [toggle]="searchToggle" (changed)="handleChangeSearchToggle()"></toggle>
+  <toggle [toggle]="sortToggle" (changed)="handleChangeSortToggle()"></toggle>
   <movie-list></movie-list>
 </div>
