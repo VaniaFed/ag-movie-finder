@@ -1,0 +1,8 @@
+<div class="toggle">
+  <button class="toggle-item toggle__item" *ngFor="let toggleItem of toggle;"
+          (click)="handleChangeToggle(toggleItem.text)"
+          [class.toggle-item--active]="active === toggleItem.text"
+  >
+    {{toggleItem.text}}
+  </button>
+</div>

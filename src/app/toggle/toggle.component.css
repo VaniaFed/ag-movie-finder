@@ -1,0 +1,25 @@
+.toggle {
+  display: flex;
+}
+
+.toggle-item {
+  text-align: center;
+  display: block;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  background: #444;
+  color: #fff;
+  border: none;
+}
+
+.toggle__item {
+  margin-left: 10px;
+}
+.toggle__item:first-child {
+  margin-left: 0;
+}
+
+.toggle-item--active {
+  background: #9C27B0;
+  color: #fff;
+}

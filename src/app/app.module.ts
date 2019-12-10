@@ -6,6 +6,7 @@ import { SearchHeaderComponent } from './search-header/search-header.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ToggleComponent } from './toggle/toggle.component';
+import { SearchInputComponent } from './search-input/search-input.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ToggleComponent } from './toggle/toggle.component';
     SearchHeaderComponent,
     MovieListComponent,
     ToggleComponent,
+    SearchInputComponent,
   ],
   imports: [
     BrowserModule,

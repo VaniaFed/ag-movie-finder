@@ -8,6 +8,6 @@ import { MovieService } from '../../shared/movie.service';
 export class MovieListComponent implements OnInit {
   constructor(private movieService: MovieService) { }
   ngOnInit() {
-    console.log(this.movieService.fetchMovies().subscribe((a) => {console.log('hehehe', a)}));
+    console.log(this.movieService.fetchMovies('harry potter').subscribe((a) => {console.log('hehehe', a)}));
   }
 }

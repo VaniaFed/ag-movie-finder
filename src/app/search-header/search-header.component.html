@@ -1,0 +1,6 @@
+<div>
+  <toggle [toggle]="searchHeaderService.searchToggle" (changed)="searchHeaderService.handleChangeSearchToggle($event)"></toggle>
+  <toggle [toggle]="searchHeaderService.sortToggle" (changed)="searchHeaderService.handleChangeSortToggle($event)"></toggle>
+  <h3 class="search-block__title">Find your movie</h3>
+  <search-input findText="Find" (inputSearchValue)="searchHeaderService.handleInput($event)" (submit)="lookForMovies()"></search-input>
+</div>
