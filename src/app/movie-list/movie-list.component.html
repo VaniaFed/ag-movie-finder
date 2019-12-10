@@ -1,0 +1,19 @@
+<ul class="movies">
+  <li *ngFor="let movie of this.movieService.movies" class="movie-card">
+    <a href="#" class="movie-card__link">
+      <img
+        class="movie-card__image"
+        [src]="movie.posterPath"
+        [alt]="movie.title"
+      />
+      <div class="movie-card-info">
+        <div class="movie-card-info__left">
+          <h2 class="movie-card-info__title">{{movie.title}}</h2>
+          <p class="movie-card-info__genres">{{movie.genres}}</p>
+        </div>
+        <p class="movie-card-info__date">{{movie.releaseDate | date:"y"}}</p>
+      </div>
+    </a>
+  </li>
+</ul>
+
