@@ -6,7 +6,7 @@ import { MovieService } from '../../shared/movie.service';
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit {
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService) {}
   ngOnInit() {
     console.log(this.movieService.fetchMovies('harry potter').subscribe((a) => {console.log('hehehe', a)}));
   }

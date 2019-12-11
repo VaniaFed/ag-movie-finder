@@ -7,10 +7,12 @@ import { MovieListComponent } from './movie-list/movie-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ToggleComponent } from './toggle/toggle.component';
 import { SearchInputComponent } from './search-input/search-input.component';
+import { ScaleOnHoverDirective } from './scale-on-hover.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ScaleOnHoverDirective,
     SearchHeaderComponent,
     MovieListComponent,
     ToggleComponent,

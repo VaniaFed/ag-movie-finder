@@ -13,3 +13,7 @@ body {
 img {
   max-width: 100%;
 }
+
+.transform-scale {
+  transform: scale(1.05);
+}
