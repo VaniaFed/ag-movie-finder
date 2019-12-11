@@ -35,19 +35,31 @@ export class MovieService {
       sortBy: this.format(sortBy)
     };
     const params = stringify(paramsData);
-    console.log(params);
     return this.httpClient.get<GotMovies>(`http://reactjs-cdp.herokuapp.com/movies?${params}`)
-      .pipe(tap(movies => { this.movies = this.validate(movies.data); console.log(this.movies); }));
+      .pipe(tap(movies => {
+        this.movies = this.validate(movies.data);
+      }));
   }
 
-  validate = movies => {
-      return movies.map(movie => {
-        const validMovie = movie;
-        validMovie.posterPath = movie.poster_path;
-        validMovie.releaseDate = movie.release_date;
-        delete validMovie.poster_path;
-        delete validMovie.release_date;
-        return validMovie;
-      });
+  validate = movies =>
+    movies.map(movie =>
+      this.makeCamelCaseForAllProps(movie));
+
+  makeCamelCaseForAllProps = obj => {
+    return Object.entries(obj).reduce((acc, c) => {
+      const key = c[0];
+      const val = c[1];
+      return {
+        ...acc,
+        [this.makeCamelCase(key)]: val
+      };
+    }, {});
+  }
+
+  makeCamelCase = str => {
+    if (!/_+?\w{1}/ig.test(str)) {
+      return str;
+    }
+    return str.replace(/_+?(\w{1})/ig, (_, g1) => g1.toUpperCase());
   }
 }
