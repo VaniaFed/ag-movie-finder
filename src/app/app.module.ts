@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { ToggleComponent } from './toggle/toggle.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { ScaleOnHoverDirective } from './scale-on-hover.directive';
+import { ArrayToStringPipe } from './array-to-string.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ScaleOnHoverDirective } from './scale-on-hover.directive';
     MovieListComponent,
     ToggleComponent,
     SearchInputComponent,
+    ArrayToStringPipe,
   ],
   imports: [
     BrowserModule,

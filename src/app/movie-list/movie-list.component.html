@@ -9,7 +9,7 @@
       <div class="movie-card-info">
         <div class="movie-card-info__left">
           <h2 class="movie-card-info__title">{{movie.title}}</h2>
-          <p class="movie-card-info__genres">{{movie.genres}}</p>
+          <p class="movie-card-info__genres">{{movie.genres | arrayToString }}</p>
         </div>
         <p class="movie-card-info__date">{{movie.releaseDate | date:"y"}}</p>
       </div>
