@@ -1,9 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'search-input',
   templateUrl: './search-input.component.html',
-  styleUrls: ['./search-input.component.css']
+  styleUrls: ['./search-input.component.css'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class SearchInputComponent implements OnInit {
 

@@ -9,6 +9,7 @@ import { ToggleComponent } from './toggle/toggle.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { ScaleOnHoverDirective } from './scale-on-hover.directive';
 import { ArrayToStringPipe } from './array-to-string.pipe';
+import { AppButtonComponent } from './app-button/app-button.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ArrayToStringPipe } from './array-to-string.pipe';
     ToggleComponent,
     SearchInputComponent,
     ArrayToStringPipe,
+    AppButtonComponent,
   ],
   imports: [
     BrowserModule,

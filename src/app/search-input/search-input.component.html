@@ -1,8 +1,9 @@
 <div class="search-input">
   <input class="search-input-input search-input__input" type="text" (input)="handleInput($event)">
-  <button
-  (click)="handleSubmit($event)"
-  class="search-block__btn-search">
-  {{findText}}
-  </button>
+  <app-button
+    className="search-block__btn-search"
+    text="Find"
+    (click)="handleSubmit()"
+    >
+  </app-button>
 </div>
