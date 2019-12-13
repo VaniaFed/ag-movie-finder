@@ -1,0 +1,11 @@
+<div class="search-info">
+  <div class="container">
+    <div class="search-info__inner">
+      <div class="search-info__quantity-found">{{this.movieService.movies.length}} movies found</div>
+      <div class="search-info__sort-by">
+        <span class="search-info__sort-by__title">Sort by</span>
+        <toggle [toggle]="searchControls.sortToggle" (changed)="searchControls.handleChangeSortToggle($event)"></toggle>
+      </div>
+    </div>
+  </div>
+</div>

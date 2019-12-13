@@ -12,7 +12,7 @@ export class ToggleComponent implements OnInit {
   @Output() changed: any = new EventEmitter<string>();
   public active: string;
 
-  handleChangeToggle = toggledText => {
+  handleChangeToggle = (toggledText: string) => {
     if (this.toggleService.shouldChangeToggle(this.active, toggledText)) {
       this.changed.emit(toggledText);
       this.active = toggledText;

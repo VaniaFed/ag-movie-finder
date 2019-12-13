@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  margin: 30px 0;
+  margin-top: 30px;
 }
 
 .movie-card {
@@ -19,31 +19,4 @@
 .movie-card__link {
   text-decoration: none;
   color: #000;
-}
-
-.movie-card__info {
-  margin-top: 6px;
-}
-
-.movie-card-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.movie-card-info__title {
-  font-size: 20px;
-  margin: 0;
-}
-
-.movie-card-info__genres {
-  color: #666;
-}
-
-.movie-card-info__date {
-  border: 1px dashed #999;
-  display: inline-block;
-  padding: 2px 4px;
-  min-width: 94px;
-  text-align: center;
 }

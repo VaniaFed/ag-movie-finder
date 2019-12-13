@@ -1,0 +1,26 @@
+.search-info {
+  background: #7f7f7f;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.search-info__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search-info__quantity-found {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.search-info__sort-by__title {
+  font-size: 20px;
+  font-weight: 300;
+  margin-right: 20px;
+  text-transform: uppercase;
+}
+
+.search-info__sort-by {
+  display: flex;
+}

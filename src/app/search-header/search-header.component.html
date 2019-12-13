@@ -1,14 +1,18 @@
 <div class="header">
-  <h1 class="header__logo">netfixroulette</h1>
-  <div class="header__content">
-    <h3 class="search-block__title">Find your movie</h3>
-    <search-input
-      findText="Find"
-      (inputSearchValue)="searchHeaderService.handleInput($event)" (submit)="lookForMovies()"
-    >
-    </search-input>
-    <toggle class="header__toggle" [toggle]="searchHeaderService.searchToggle" (changed)="searchHeaderService.handleChangeSearchToggle($event)"></toggle>
+  <div class="header__background-image"></div>
+  <div class="container header__inner">
+    <h1 class="header__logo">netfixroulette</h1>
+    <div class="header__content">
+      <h3 class="search-block__title">Find your movie</h3>
+      <search-control
+        findText="Find"
+        (inputSearchValue)="searchControlsService.handleInput($event)" (submit)="lookForMovies()"
+      >
+      </search-control>
+      <div class="header__toggle">
+        <span class="header__toggle__title">Search by</span>
+        <toggle [toggle]="searchControlsService.searchToggle" (changed)="searchControlsService.handleChangeSearchToggle($event)"></toggle>
+      </div>
+    </div>
   </div>
 </div>
-
-<!--  <toggle [toggle]="searchHeaderService.sortToggle" (changed)="searchHeaderService.handleChangeSortToggle($event)"></toggle>-->

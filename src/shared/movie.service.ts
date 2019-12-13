@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 import { stringify } from 'query-string';
 
-interface Movie {
+export interface Movie {
   id: string;
   title: string;
   posterPath: string;
@@ -22,13 +22,14 @@ export class MovieService {
   constructor(private httpClient: HttpClient) {
   }
 
-  movies = [];
+  movies: Movie[] = [];
 
-  format = val => {
+  format = (val: string) => {
     return val.replace(/\s/ig, "_").toLowerCase();
   }
 
-  fetchMovies = (search, searchBy = 'title', sortBy = 'release_date') => {
+  // TODO: make type SearchData and pass an object instead of list of variables
+  fetchMovies = (search: string, searchBy: string = 'title', sortBy: string = 'release_date') => {
     const paramsData = {
       search,
       searchBy: this.format(searchBy),
@@ -36,16 +37,16 @@ export class MovieService {
     };
     const params = stringify(paramsData);
     return this.httpClient.get<GotMovies>(`http://reactjs-cdp.herokuapp.com/movies?${params}`)
-      .pipe(tap(movies => {
+      .pipe(tap((movies: GotMovies) => {
         this.movies = this.validate(movies.data);
       }));
   }
 
-  validate = movies =>
+  validate = (movies: Movie[]): Movie[] =>
     movies.map(movie =>
       this.makeCamelCaseForAllProps(movie));
 
-  makeCamelCaseForAllProps = obj => {
+  makeCamelCaseForAllProps = (obj: any): any => {
     return Object.entries(obj).reduce((acc, c) => {
       const key = c[0];
       const val = c[1];
@@ -56,7 +57,7 @@ export class MovieService {
     }, {});
   }
 
-  makeCamelCase = str => {
+  makeCamelCase = (str: string) => {
     if (!/_+?\w{1}/ig.test(str)) {
       return str;
     }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { SearchHeaderService } from './search-header.service';
+import { SearchControlsService } from '../../shared/search-controls.service';
 import {MovieService} from '../../shared/movie.service';
 
 @Component({
@@ -9,13 +9,13 @@ import {MovieService} from '../../shared/movie.service';
 })
 export class SearchHeaderComponent implements OnInit {
 
-  constructor(private searchHeaderService: SearchHeaderService, private movieService: MovieService) { }
+  constructor(private searchControlsService: SearchControlsService, private movieService: MovieService) { }
 
   ngOnInit() {
   }
 
   lookForMovies() {
-    const { searchValue, searchBy, sortBy } = this.searchHeaderService;
-    console.log(this.movieService.fetchMovies(searchValue, searchBy, sortBy).subscribe(a => {console.log('hehehe', a)}));
+    const { searchValue, searchBy, sortBy } = this.searchControlsService;
+    this.movieService.fetchMovies(searchValue, searchBy, sortBy).subscribe();
   }
 }

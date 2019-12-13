@@ -1,19 +1,17 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 
 @Component({
-  selector: 'search-input',
-  templateUrl: './search-input.component.html',
-  styleUrls: ['./search-input.component.css'],
+  selector: 'search-control',
+  templateUrl: './search-control.component.html',
+  styleUrls: ['./search-control.component.css'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class SearchInputComponent implements OnInit {
+export class SearchControlComponent {
 
   constructor() { }
   @Input() findText: string;
   @Output() inputSearchValue = new EventEmitter<string>();
   @Output() submit = new EventEmitter();
-  ngOnInit() {
-  }
 
   handleInput = e => {
     const inputText = e.target.value;

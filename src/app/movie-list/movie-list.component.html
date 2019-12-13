@@ -1,4 +1,4 @@
-<ul class="movies">
+<ul class="movies container">
   <li *ngFor="let movie of this.movieService.movies" class="movie-card" scaleOnHover>
     <a href="#" class="movie-card__link">
       <img
@@ -6,13 +6,7 @@
         [src]="movie.posterPath"
         [alt]="movie.title"
       />
-      <div class="movie-card-info">
-        <div class="movie-card-info__left">
-          <h2 class="movie-card-info__title">{{movie.title}}</h2>
-          <p class="movie-card-info__genres">{{movie.genres | arrayToString }}</p>
-        </div>
-        <p class="movie-card-info__date">{{movie.releaseDate | date:"y"}}</p>
-      </div>
     </a>
+    <movie-info [movie]="movie"></movie-info>
   </li>
 </ul>

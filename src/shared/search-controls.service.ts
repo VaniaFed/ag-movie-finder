@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 
+interface Toggle {
+  text: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
-export class SearchHeaderService {
+export class SearchControlsService {
 
   constructor() { }
-  searchToggle = [
+  searchToggle: Toggle[] = [
     {
       text: 'Title',
     },
@@ -15,7 +19,7 @@ export class SearchHeaderService {
     }
   ];
 
-  sortToggle = [
+  sortToggle: Toggle[] = [
     {
       text: 'Release date',
     },
@@ -23,15 +27,15 @@ export class SearchHeaderService {
       text: 'Rating'
     }
   ];
-  searchBy: string = this.searchToggle[0].text;
   sortBy: string = this.sortToggle[0].text;
+  searchBy: string = this.searchToggle[0].text;
   searchValue: string;
-
-  handleChangeSearchToggle = val => {
-    this.searchBy = val;
-  }
-  handleChangeSortToggle = val => {
+  handleChangeSortToggle = (val: string) => {
     this.sortBy = val;
+  }
+
+  handleChangeSearchToggle = (val: string) => {
+    this.searchBy = val;
   }
 
   handleInput(textInput: string) {
