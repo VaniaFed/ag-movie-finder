@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { SearchHeaderComponent } from './search-header/search-header.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
-import {HttpClientModule} from '@angular/common/http';
 import { ToggleComponent } from './toggle/toggle.component';
 import { SearchControlComponent } from './search-header/search-control/search-control.component';
 import { ScaleOnHoverDirective } from './scale-on-hover.directive';
@@ -14,6 +15,25 @@ import { SearchInfoComponent } from './search-info/search-info.component';
 import { MovieInfoComponent } from './movie-list/movie-info/movie-info.component';
 import { SearchComponent } from './pages/search/search.component';
 import { MovieComponent } from './pages/movie/movie.component';
+
+const routes: Routes = [
+  {
+    path: 'search',
+    component: SearchComponent,
+    data: {
+      searchBy: 'title',
+      sortBy: 'release_date',
+      search: 'harry'
+    }
+  },
+  {
+    path: 'movie',
+    component: MovieComponent,
+    data: {
+      id: 1
+    }
+  }
+];
 
 @NgModule({
   declarations: [
@@ -32,9 +52,14 @@ import { MovieComponent } from './pages/movie/movie.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(
+      routes,
+      { enableTracing: true }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

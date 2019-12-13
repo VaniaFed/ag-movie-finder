@@ -1,6 +1,6 @@
 <ul class="movies container">
-  <li *ngFor="let movie of this.movieService.movies" class="movie-card" scaleOnHover>
-    <a href="#" class="movie-card__link">
+  <li *ngFor="let movie of this.movieService.movies;" class="movie-card" scaleOnHover>
+    <a routerLink="/movie" class="movie-card__link">
       <img
         class="movie-card__image"
         [src]="movie.posterPath"
