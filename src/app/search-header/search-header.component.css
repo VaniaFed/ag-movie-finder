@@ -28,14 +28,6 @@
   opacity: .8;
 }
 
-.header__logo {
-  padding-top: 20px;
-  padding-left: 60px;
-  font-weight: 200;
-  font-size: 16px;
-  color: #9C27B0;
-}
-
 .header__content {
   padding: 80px 100px 100px;
   position: relative;

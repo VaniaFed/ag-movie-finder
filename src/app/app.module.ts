@@ -12,9 +12,12 @@ import { ScaleOnHoverDirective } from './scale-on-hover.directive';
 import { ArrayToStringPipe } from './array-to-string.pipe';
 import { AppButtonComponent } from './app-button/app-button.component';
 import { SearchInfoComponent } from './search-info/search-info.component';
-import { MovieInfoComponent } from './movie-list/movie-info/movie-info.component';
+import { CardMovieInfoComponent } from './movie-list/card-movie-info/card-movie-info.component';
 import { SearchComponent } from './pages/search/search.component';
 import { MovieComponent } from './pages/movie/movie.component';
+import { MovieHeaderComponent } from './movie-header/movie-header.component';
+import { MovieInfoComponent } from './movie-info/movie-info.component';
+import { LogoComponent } from './logo/logo.component';
 
 const routes: Routes = [
   {
@@ -27,8 +30,9 @@ const routes: Routes = [
     }
   },
   {
-    path: 'movie',
+    path: 'movie/:id',
     component: MovieComponent,
+    pathMatch: 'full',
     data: {
       id: 1
     }
@@ -47,8 +51,11 @@ const routes: Routes = [
     AppButtonComponent,
     SearchInfoComponent,
     MovieInfoComponent,
+    CardMovieInfoComponent,
     SearchComponent,
     MovieComponent,
+    MovieHeaderComponent,
+    LogoComponent,
   ],
   imports: [
     BrowserModule,

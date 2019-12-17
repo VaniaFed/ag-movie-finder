@@ -13,9 +13,14 @@ export class SearchControlComponent {
   @Output() inputSearchValue = new EventEmitter<string>();
   @Output() submit = new EventEmitter();
 
+  inputText = '';
   handleInput = e => {
-    const inputText = e.target.value;
-    this.inputSearchValue.emit(inputText);
+    this.inputText = e.target.value;
+    this.inputSearchValue.emit(this.inputText);
+  }
+
+  handlePressEnter = () => {
+    this.submit.emit();
   }
 
   handleSubmit() {

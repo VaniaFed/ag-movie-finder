@@ -1,12 +1,12 @@
 <ul class="movies container">
   <li *ngFor="let movie of this.movieService.movies;" class="movie-card" scaleOnHover>
-    <a routerLink="/movie" class="movie-card__link">
+    <a [routerLink]="['/movie', movie.id]" class="movie-card__link">
       <img
         class="movie-card__image"
         [src]="movie.posterPath"
         [alt]="movie.title"
       />
     </a>
-    <movie-info [movie]="movie"></movie-info>
+    <card-movie-info [movie]="movie"></card-movie-info>
   </li>
 </ul>

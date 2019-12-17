@@ -9,6 +9,8 @@ export interface Movie {
   posterPath: string;
   genres: string[];
   releaseDate: string;
+  runtime: string;
+  overview: string;
 }
 
 interface GotMovies {
@@ -23,9 +25,20 @@ export class MovieService {
   }
 
   movies: Movie[] = [];
+  currentMovie: Movie = {
+    id: '1',
+    title: 'hello',
+    posterPath: '/',
+    genres: ['gg', 'hh', '44'],
+    releaseDate: '2018',
+    runtime: '20',
+    overview: 'loree'
+  };
+
+  sameGenresMovies: Movie[] = [];
 
   format = (val: string) => {
-    return val.replace(/\s/ig, "_").toLowerCase();
+    return val.replace(/\s/ig, '_').toLowerCase();
   }
 
   // TODO: make type SearchData and pass an object instead of list of variables
@@ -41,6 +54,14 @@ export class MovieService {
         this.movies = this.validate(movies.data);
       }));
   }
+
+  getMovie = (id: string) => {
+    return this.httpClient.get<Movie>(`http://reactjs-cdp.herokuapp.com/movies/${id}`)
+      .pipe(tap((movie: Movie) => {
+        console.log(movie);
+        this.currentMovie = this.validate([ movie ])[0];
+      }));
+  };
 
   validate = (movies: Movie[]): Movie[] =>
     movies.map(movie =>

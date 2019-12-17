@@ -1,0 +1,34 @@
+<div class="movie-header">
+  <div class="movie-header__background-image"></div>
+  <div class="movie-header__content">
+    <div class="container header__inner">
+      <logo></logo>
+      <a routerLink="/search">
+          <app-button
+            class="movie-header__search-button"
+            text="Search"
+            (click)="movieService.getMovie('55')"
+          ></app-button>
+      </a>
+    </div>
+    <div class="movie container">
+      <img
+        [src]="movieService.currentMovie.posterPath"
+        alt="Movie Image"
+        class="movie__image"
+      />
+      <div class="movie__info">
+        <h2
+          class="movie__title"
+          data-text="movie-page__movie-title"
+        >
+          {{movieService.currentMovie.title}}
+        </h2>
+        <p class="movie__genres">{{movieService.currentMovie.genres | arrayToString}}</p>
+        <p class="movie__date">{{movieService.currentMovie.releaseDate | date:'y'}}</p>
+        <p class="movie__duration">{{movieService.currentMovie.runtime}}m</p>
+        <p class="movie__description">{{movieService.currentMovie.overview}}</p>
+      </div>
+    </div>
+  </div>
+</div>
