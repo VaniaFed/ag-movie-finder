@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { SearchHeaderComponent } from './search-header/search-header.component';
@@ -18,26 +17,7 @@ import { MovieComponent } from './pages/movie/movie.component';
 import { MovieHeaderComponent } from './movie-header/movie-header.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { LogoComponent } from './logo/logo.component';
-
-const routes: Routes = [
-  {
-    path: 'search',
-    component: SearchComponent,
-    data: {
-      search: 'harry',
-      searchBy: 'title',
-      sortBy: 'release_date'
-    }
-  },
-  {
-    path: 'movie/:id',
-    component: MovieComponent,
-    pathMatch: 'full',
-    data: {
-      id: 1
-    }
-  }
-];
+import {AppRouterModule} from './app-router.module';
 
 @NgModule({
   declarations: [
@@ -55,15 +35,12 @@ const routes: Routes = [
     MovieHeaderComponent,
     LogoComponent,
     ScaleOnHoverDirective,
-    ArrayToStringPipe
+    ArrayToStringPipe,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(
-      routes,
-      { enableTracing: true }
-    )
+    AppRouterModule
   ],
   providers: [],
   bootstrap: [AppComponent],

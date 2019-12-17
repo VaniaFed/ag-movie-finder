@@ -62,7 +62,7 @@ export class MovieService {
     return this.httpClient.get<GotMovies>(`http://reactjs-cdp.herokuapp.com/movies?${params}`)
       .pipe(tap((movies: GotMovies) => {
         this.movies = this.validate(movies.data);
-      })).subscribe();
+      })).subscribe() as any;
   }
 
   getMovie = (id: string): Movie => {
@@ -70,7 +70,7 @@ export class MovieService {
       .pipe(tap((movie: Movie) => {
         console.log(movie);
         this.currentMovie = this.validate([ movie ])[0];
-      })).subscribe();
+      })).subscribe() as any;
   };
 
   validate = (movies: Movie[]): Movie[] =>
