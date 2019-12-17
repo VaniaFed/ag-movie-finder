@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {MovieService} from '../../../shared/movie.service';
@@ -14,6 +14,9 @@ export class MovieComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private movieService: MovieService) {}
 
   ngOnInit() {
-    console.log('hihi');
+    this.route.params.subscribe(routeParams => {
+      this.movieService.getMovie(routeParams.id);
+      // this.movieService.fetchMovies() // by genre
+    });
   }
 }

@@ -16,6 +16,7 @@ export class SearchHeaderComponent implements OnInit {
 
   lookForMovies() {
     const { searchValue, searchBy, sortBy } = this.searchControlsService;
-    this.movieService.fetchMovies(searchValue, searchBy, sortBy).subscribe();
+    this.movieService.fetchMovies(searchValue, searchBy, sortBy);
   }
+
 }

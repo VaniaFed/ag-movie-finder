@@ -36,13 +36,23 @@ export class MovieService {
   };
 
   sameGenresMovies: Movie[] = [];
+  lastSearchData = {
+    search: '',
+    searchBy: 'title',
+    sortBy: 'release_date'
+  };
 
   format = (val: string) => {
     return val.replace(/\s/ig, '_').toLowerCase();
   }
 
   // TODO: make type SearchData and pass an object instead of list of variables
-  fetchMovies = (search: string, searchBy: string = 'title', sortBy: string = 'release_date') => {
+  fetchMovies = (search: string, searchBy: string = 'title', sortBy: string = 'release_date'): Movie[] => {
+    if (search === this.lastSearchData.search &&
+        searchBy === this.lastSearchData.searchBy &&
+        sortBy === this.lastSearchData.sortBy) {
+      return this.movies;
+    }
     const paramsData = {
       search,
       searchBy: this.format(searchBy),
@@ -52,15 +62,15 @@ export class MovieService {
     return this.httpClient.get<GotMovies>(`http://reactjs-cdp.herokuapp.com/movies?${params}`)
       .pipe(tap((movies: GotMovies) => {
         this.movies = this.validate(movies.data);
-      }));
+      })).subscribe();
   }
 
-  getMovie = (id: string) => {
+  getMovie = (id: string): Movie => {
     return this.httpClient.get<Movie>(`http://reactjs-cdp.herokuapp.com/movies/${id}`)
       .pipe(tap((movie: Movie) => {
         console.log(movie);
         this.currentMovie = this.validate([ movie ])[0];
-      }));
+      })).subscribe();
   };
 
   validate = (movies: Movie[]): Movie[] =>

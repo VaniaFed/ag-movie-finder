@@ -24,9 +24,9 @@ const routes: Routes = [
     path: 'search',
     component: SearchComponent,
     data: {
+      search: 'harry',
       searchBy: 'title',
-      sortBy: 'release_date',
-      search: 'harry'
+      sortBy: 'release_date'
     }
   },
   {
@@ -42,12 +42,10 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ScaleOnHoverDirective,
     SearchHeaderComponent,
     MovieListComponent,
     ToggleComponent,
     SearchControlComponent,
-    ArrayToStringPipe,
     AppButtonComponent,
     SearchInfoComponent,
     MovieInfoComponent,
@@ -56,6 +54,8 @@ const routes: Routes = [
     MovieComponent,
     MovieHeaderComponent,
     LogoComponent,
+    ScaleOnHoverDirective,
+    ArrayToStringPipe
   ],
   imports: [
     BrowserModule,
@@ -66,7 +66,7 @@ const routes: Routes = [
     )
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

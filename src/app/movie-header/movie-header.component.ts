@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {MovieService} from '../../shared/movie.service';
 import {switchMap} from 'rxjs/operators';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
@@ -8,13 +8,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
   templateUrl: './movie-header.component.html',
   styleUrls: ['./movie-header.component.css']
 })
-export class MovieHeaderComponent implements OnInit {
+export class MovieHeaderComponent {
 
-  constructor(private route: ActivatedRoute, private router: Router, private movieService: MovieService) { }
-  movie = {};
-  ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.movieService.getMovie(id).subscribe();
-  }
-
+  constructor(private movieService: MovieService) { }
 }
