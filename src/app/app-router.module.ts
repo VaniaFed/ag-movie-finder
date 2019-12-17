@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {SearchComponent} from './pages/search/search.component';
-import {MovieComponent} from './pages/movie/movie.component';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 const routes: Routes = [
   {
     path: 'search',
-    component: SearchComponent,
+    loadChildren: () => import('./pages/search/search.module').then(m => m.SearchModule),
   },
   {
     path: 'movie/:id',
-    component: MovieComponent,
-    pathMatch: 'full',
+    loadChildren: () => import('./pages/movie/movie.module').then(m => m.MovieModule)
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
-
 @NgModule({
   declarations: [],
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes, {enableTracing: true}) ],
   exports: [ RouterModule ]
 })
 export class AppRouterModule { }
