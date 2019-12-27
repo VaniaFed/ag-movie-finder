@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import {AppRouterModule} from './app-router.module';
 import {BrowserModule} from '@angular/platform-browser';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
-    AppRouterModule
+    AppRouterModule,
+    HttpClientModule,
+    RouterModule
   ],
   bootstrap: [AppComponent],
 })

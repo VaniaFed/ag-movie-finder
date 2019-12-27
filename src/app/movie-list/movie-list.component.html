@@ -1,5 +1,5 @@
-<ul class="movies container">
-  <li *ngFor="let movie of this.movieService.movies;" class="movie-card" scaleOnHover>
+<ul *ngIf="movieList.length > 0; else notFound" class="movies container">
+  <li *ngFor="let movie of movieList;" class="movie-card" scaleOnHover>
     <a [routerLink]="['/movie', movie.id]" class="movie-card__link">
       <img
         class="movie-card__image"
@@ -10,3 +10,9 @@
     <card-movie-info [movie]="movie"></card-movie-info>
   </li>
 </ul>
+
+<ng-template #notFound>
+  <h1>
+    {{notFoundText}}
+  </h1>
+</ng-template>

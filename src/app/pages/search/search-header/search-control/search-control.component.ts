@@ -10,13 +10,13 @@ export class SearchControlComponent {
 
   constructor() { }
   @Input() findText: string;
-  @Output() inputSearchValue = new EventEmitter<string>();
+  @Output() inputSearch = new EventEmitter<string>();
   @Output() submit = new EventEmitter();
 
   inputText = '';
   handleInput = e => {
     this.inputText = e.target.value;
-    this.inputSearchValue.emit(this.inputText);
+    this.inputSearch.emit(this.inputText);
   }
 
   handlePressEnter = () => {

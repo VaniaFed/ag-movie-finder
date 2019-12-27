@@ -1,0 +1,9 @@
+.search-info {
+  background: #7f7f7f;
+  color: #fff;
+  padding: 20px 0;
+}
+.search-info__genre {
+  font-size: 20px;
+  font-weight: 700;
+}

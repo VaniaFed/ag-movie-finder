@@ -4,6 +4,8 @@ interface Toggle {
   text: string;
 }
 
+export type SortBy = 'release_date' | 'rating';
+export type SearchBy = 'title' | 'genres';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,18 +29,18 @@ export class SearchControlsService {
       text: 'Rating'
     }
   ];
-  sortBy: string = this.sortToggle[0].text;
-  searchBy: string = this.searchToggle[0].text;
-  searchValue: string;
+  sortBy: SortBy = this.sortToggle[0].text as any;
+  searchBy: SearchBy = this.searchToggle[0].text as any;
+  search = '';
   handleChangeSortToggle = (val: string) => {
-    this.sortBy = val;
+    this.sortBy = val as any;
   }
 
   handleChangeSearchToggle = (val: string) => {
-    this.searchBy = val;
+    this.searchBy = val as any;
   }
 
   handleInput(textInput: string) {
-    this.searchValue = textInput;
+    this.search = textInput;
   }
 }

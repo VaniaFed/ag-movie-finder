@@ -6,12 +6,16 @@
       <h3 class="search-block__title">Find your movie</h3>
       <search-control
         findText="Find"
-        (inputSearchValue)="searchControlsService.handleInput($event)" (submit)="lookForMovies()"
+        (inputSearch)="searchControlsService.handleInput($event)"
+        (submit)="handleSearch()"
       >
       </search-control>
       <div class="header__toggle">
         <span class="header__toggle__title">Search by</span>
-        <toggle [toggle]="searchControlsService.searchToggle" (changed)="searchControlsService.handleChangeSearchToggle($event)"></toggle>
+        <toggle
+          [toggle]="searchControlsService.searchToggle"
+          (changed)="searchControlsService.handleChangeSearchToggle($event)">
+        </toggle>
       </div>
     </div>
   </div>

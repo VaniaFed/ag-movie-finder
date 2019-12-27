@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
 import { stringify } from 'query-string';
+import {SearchBy, SortBy} from './search-controls.service';
 
 export interface Movie {
   id: string;
@@ -13,8 +15,10 @@ export interface Movie {
   overview: string;
 }
 
-interface GotMovies {
-  data: Movie[];
+export interface SearchData {
+  search: string;
+  searchBy: SearchBy;
+  sortBy: SortBy;
 }
 
 @Injectable({
@@ -25,16 +29,7 @@ export class MovieService {
   }
 
   movies: Movie[] = [];
-  currentMovie: Movie = {
-    id: '1',
-    title: 'hello',
-    posterPath: '/',
-    genres: ['gg', 'hh', '44'],
-    releaseDate: '2018',
-    runtime: '20',
-    overview: 'loree'
-  };
-
+  currentMovie: Movie;
   sameGenresMovies: Movie[] = [];
   lastSearchData = {
     search: '',
@@ -42,36 +37,44 @@ export class MovieService {
     sortBy: 'release_date'
   };
 
-  format = (val: string) => {
+  fetchMovies = (searchData: SearchData): Observable<Movie[]> => {
+    const formattedSearchData = this.formatSearchData(searchData);
+    if (!this.isSearchDataChanged(formattedSearchData)) {
+        console.log('getting movies from cache');
+        return of({ data: this.movies }) as any;
+    }
+    console.log('making a query');
+    this.lastSearchData = formattedSearchData;
+    const params = stringify(formattedSearchData);
+    return this.httpClient.get<Movie[]>(`http://reactjs-cdp.herokuapp.com/movies?${params}`);
+  }
+
+  isSearchDataChanged = (searchData: SearchData) => {
+    console.log(searchData);
+    console.log(this.lastSearchData);
+    return searchData.search !== this.lastSearchData.search ||
+      searchData.searchBy !== this.lastSearchData.searchBy ||
+      searchData.sortBy !== this.lastSearchData.sortBy;
+  }
+
+  formatSearchData = (searchData: SearchData): SearchData => {
+    return {
+      search: searchData.search,
+      searchBy: this.replaceSpacesWithUnderscore(searchData.searchBy) as any,
+      sortBy: this.replaceSpacesWithUnderscore(searchData.sortBy) as any
+    };
+  }
+
+  replaceSpacesWithUnderscore = (val: string) => {
     return val.replace(/\s/ig, '_').toLowerCase();
   }
 
-  // TODO: make type SearchData and pass an object instead of list of variables
-  fetchMovies = (search: string, searchBy: string = 'title', sortBy: string = 'release_date'): Movie[] => {
-    if (search === this.lastSearchData.search &&
-        searchBy === this.lastSearchData.searchBy &&
-        sortBy === this.lastSearchData.sortBy) {
-      return this.movies;
-    }
-    const paramsData = {
-      search,
-      searchBy: this.format(searchBy),
-      sortBy: this.format(sortBy)
-    };
-    const params = stringify(paramsData);
-    return this.httpClient.get<GotMovies>(`http://reactjs-cdp.herokuapp.com/movies?${params}`)
-      .pipe(tap((movies: GotMovies) => {
-        this.movies = this.validate(movies.data);
-      })).subscribe() as any;
-  }
-
-  getMovie = (id: string): Movie => {
+  getMovie = (id: string): Observable<Movie> => {
     return this.httpClient.get<Movie>(`http://reactjs-cdp.herokuapp.com/movies/${id}`)
       .pipe(tap((movie: Movie) => {
-        console.log(movie);
         this.currentMovie = this.validate([ movie ])[0];
-      })).subscribe() as any;
-  };
+      }));
+  }
 
   validate = (movies: Movie[]): Movie[] =>
     movies.map(movie =>
@@ -93,5 +96,17 @@ export class MovieService {
       return str;
     }
     return str.replace(/_+?(\w{1})/ig, (_, g1) => g1.toUpperCase());
+  }
+
+  getSameGenreMovies = (genre: string) => {
+    const sameGenresSearchData: SearchData = { searchBy: 'genres',
+      sortBy: 'rating',
+      search: genre
+    };
+    this
+      .fetchMovies(sameGenresSearchData)
+      .subscribe((movies: Movie[]) => {
+        this.sameGenresMovies = this.validate(movies);
+      });
   }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
-import {MovieService} from '../../../shared/movie.service';
+import {Movie, MovieService, SearchData} from '../../../shared/movie.service';
 import {log} from 'util';
 
 @Component({
@@ -10,13 +10,16 @@ import {log} from 'util';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
-
+  genre: string;
   constructor(private route: ActivatedRoute, private router: Router, private movieService: MovieService) {}
 
   ngOnInit() {
     this.route.params.subscribe(routeParams => {
-      this.movieService.getMovie(routeParams.id);
-      // this.movieService.fetchMovies() // by genre
+      this.movieService.getMovie(routeParams.id).subscribe((movie: Movie) => {
+        this.genre = movie.genres[0];
+        this.movieService.getSameGenreMovies(this.genre);
+      });
     });
   }
+
 }
